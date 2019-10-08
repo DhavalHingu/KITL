@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <title>Done...</title>
+            <style type="text/css">
+                canvas {border: 1px solid black;}
+            </style>
+        </head>
+        <body>
+        <canvas width="300" height="100" id="myCanvas" onclick="drawColor(event)"></canvas>
+
+        <p id="demo"></p>
+
+        <script>
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        function randomRGB() {
+          return `rgb(${Math.floor(Math.random() * 255)+ 1},${Math.floor(Math.random() * 255) + 1},${Math.floor(Math.random() * 255) + 1})`
+        }
+        var xyArray=[[0,0]];
+        function drawColor(event) {
+            var x = event.clientX;
+            var y = parseInt(c.getAttribute('height'));
+            var [_x,_y] = xyArray[(xyArray.length-1)];
+            xyArray.push([x,y]);
+            console.log(_x,_y,x,y)
+            ctx.fillStyle = randomRGB();
+            ctx.fillRect(_x,0, (x-_x),100);
+        }
+        </script>
+
+
+
+        </body>
+        </html>
